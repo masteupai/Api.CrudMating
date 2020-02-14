@@ -1,0 +1,13 @@
+version: '3'
+services:
+    mysqlsrv:
+        image: mysql:5.7
+        environment: 
+            MYSQL_USER: root
+            MYSQL_ROOT_PASSWORD: "senha01"
+            MYSQL_DATABASE: "DBSERVICE"
+        ports: 
+            - "3306:3306"
+        volumes:
+            - /./../databases/DBSERVICE:/var/lib/mysql
+            
