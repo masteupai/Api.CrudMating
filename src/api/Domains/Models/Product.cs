@@ -6,18 +6,18 @@ namespace API.Domains.Models
     {
         [Key]
         [Display(Name = "Id")]
-        public int IdProduct { get; set; }
+        public int ProdutoId { get; set; }
         [Required]
         [Display(Name = "Codigo")]     
-        public int CodProduct { get; set; }
+        public int Codigo { get; set; }
         [Required]
         [Display(Name = "Product")]
         [StringLength(25, ErrorMessage = "O nome do produto deve ter entre 1 até 25 caracteres")]
-        public string ProductName { get; set; }
+        public string Nome { get; set; }
         public string Descricao { get; set; }
-        public int Quant { get; set; }
-        public double Value { get; set; }        
-        public string ProdType { get; set; }
-        public bool Active { get; set; }
+        public int Quantidade { get; set; }
+        public double Valor { get; set; }        
+        public string Tipo { get; set; }
+        public bool Ativo { get; set; }
     }
 }

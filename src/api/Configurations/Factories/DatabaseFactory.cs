@@ -21,19 +21,19 @@ namespace API.Configurations.Factories
 
     public class DatabaseFactory : IDatabaseFactory
     {
-        private readonly MySqlConnection _connection;
-        //private readonly SqlConnection _connection;
-        private MySqlTransaction _transaction;
-        //private SqlTransaction _transaction;
+        //private readonly MySqlConnection _connection;
+        private readonly SqlConnection _connection;
+        //private MySqlTransaction _transaction;
+        private SqlTransaction _transaction;
         private bool _isTransactionOpen;
 
         public DatabaseFactory(IOptions<Domains.Models.Options.Database> database)
         {
-            var connectionstring = $"Server={database.Value.Server};Port={database.Value.Port};Database={database.Value.Schema};Uid={database.Value.User};Pwd={database.Value.Password};";
-            //var connectionstring = $"Data Source={database.Value.Server};Port={database.Value.Port};Initial Catalog={database.Value.Schema};User Id={database.Value.User};Password={database.Value.Password};";
+            //var connectionstring = $"Server={database.Value.Server};Port={database.Value.Port};Database={database.Value.Schema};Uid={database.Value.User};Pwd={database.Value.Password};";
+            var connectionstring = $"Data Source={database.Value.Server};Initial Catalog={database.Value.Schema};User Id={database.Value.User};Password={database.Value.Password};";
 
-            _connection = new MySqlConnection(connectionstring);
-            //_connection = new SqlConnection(connectionstring);
+            //_connection = new MySqlConnection(connectionstring);
+            _connection = new SqlConnection(connectionstring);
         }
 
         public async Task<IDbTransaction> BeginTransactionAsync()
@@ -43,7 +43,7 @@ namespace API.Configurations.Factories
                 if (_connection.State != ConnectionState.Open)
                     throw new Exception("A conexão com o banco não esta aberta.");
 
-                _transaction = await _connection.BeginTransactionAsync();
+                _transaction =  _connection.BeginTransaction();
             }
 
             _isTransactionOpen = true;
@@ -58,8 +58,8 @@ namespace API.Configurations.Factories
 
         public async Task OpenConnectionAsync()
         {
-            var connection = _connection as MySqlConnection;
-            //var connection = _connection as SqlConnection;
+            //var connection = _connection as MySqlConnection;
+            var connection = _connection as SqlConnection;
 
             await connection.OpenAsync();
         }

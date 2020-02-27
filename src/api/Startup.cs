@@ -11,7 +11,6 @@ using API.Configurations.Filters.Swashbuckle;
 using API.Configurations.Factories;
 using API.Configurations.Middlewares;
 using API.Domains.Services;
-using API.Domains.Validations;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using API.Configurations.Filters.Newtonsoft;
@@ -100,13 +99,13 @@ namespace API
 
             // Services           
             services.AddTransient<ISqlService, SqlService>();
-            services.AddTransient<IUserService, UserService>();            
+            //services.AddTransient<IUserService, UserService>();            
             services.AddTransient<IProductService, ProductService>();            
             services.AddTransient<IValidationService, ValidationService>();
             services.AddTransient<IAuthenticatedService, AuthenticatedService>();
 
             // Validators
-            services.AddSingleton<IValidator<User>, UserValidator>();
+            //services.AddSingleton<IValidator<User>, UserValidator>();
             services.AddSingleton<IValidator<Product>, ProductValidator>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }

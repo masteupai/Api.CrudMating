@@ -48,28 +48,28 @@ namespace API.Domains.Services
 
             var existsProduct = await _sqlService.ExistsAsync(ProductQuery.EXIST_PRODUCT , new
             {
-                CodProduct = product.CodProduct
+                CodProduct = product.Codigo
             });
 
             if (existsProduct)
             {
                 this._logger.LogDebug("Product already exists, triggering 400");
 
-                this._validationService.Throw("Product", "There is already another product with that CodProduct", product.CodProduct, Validation.UserRepeatedDocument);
+                this._validationService.Throw("Product", "There is already another product with that CodProduct", product.Codigo, Validation.UserRepeatedDocument);
             }
 
             this._logger.LogDebug("Inserting new Product");
 
-            product.IdProduct = await _sqlService.CreateAsync(ProductQuery.INSERT, new
+            product.ProdutoId = await _sqlService.CreateAsync(ProductQuery.INSERT, new
             {
-                IdProduct = product.IdProduct,
-                CodProduct = product.CodProduct,
-                ProductName = product.ProductName,
+                IdProduct = product.ProdutoId,
+                CodProduct = product.Codigo,
+                ProductName = product.Nome,
                 Descricao = product.Descricao,
-                Quant = product.Quant,
-                Value = product.Value,
-                ProdType = product.ProdType,
-                Active = product.Active,
+                Quant = product.Quantidade,
+                Value = product.Valor,
+                ProdType = product.Tipo,
+                Active = product.Ativo,
                 CreatedBy = _authenticatedService.Token().Subject
             });
 
@@ -86,20 +86,20 @@ namespace API.Domains.Services
 
             var product = await GetAsync(id);
 
-            var temProduct = await _sqlService.ExistsAsync(ProductQuery.EXIST_PRODUCT, new { CodProduct = product.CodProduct });
+            var temProduct = await _sqlService.ExistsAsync(ProductQuery.EXIST_PRODUCT, new { CodProduct = product.Codigo });
 
             if (!temProduct)
             {
                 this._logger.LogDebug("Product already exists, triggering 400");
 
-                this._validationService.Throw("Product", "There is already another product with that CodProduct", product.CodProduct, Validation.ProductExists);
+                this._validationService.Throw("Product", "There is already another product with that CodProduct", product.Codigo, Validation.ProductExists);
             }
 
             this._logger.LogDebug("Deleting product");
 
             await _sqlService.ExecuteAsync(ProductQuery.DELETE, new
             {
-                IdProduct = product.IdProduct,
+                IdProduct = product.ProdutoId,
                 CreatedBy = _authenticatedService.Token().Subject
             });
 
@@ -115,8 +115,8 @@ namespace API.Domains.Services
 
             var product = await _sqlService.GetAsync<Product>(ProductQuery.GET, new
             {
-                CodProduct = codProduct,
-                CreatedBy = _authenticatedService.Token().Subject
+                CodProduct = codProduct
+               //CreatedBy = _authenticatedService.Token().Subject
             });
 
            // var temProduct = await _sqlService.ExistsAsync(ProductQuery.EXIST_PRODUCT, new { CodProduct = codProduct });
@@ -198,7 +198,7 @@ namespace API.Domains.Services
 
             var existsProduct = await _sqlService.ExistsAsync(ProductQuery.EXIST_PRODUCT, new
             {
-                CodProduct = oldProduct.CodProduct                
+                CodProduct = oldProduct.Codigo                
             });
 
             this._logger.LogDebug("Checking if that product already exists");
@@ -207,25 +207,25 @@ namespace API.Domains.Services
             {
                 this._logger.LogDebug("Email already exists, triggering 400");
 
-                this._validationService.Throw("Email", "There is already another user with that email", product.CodProduct, Validation.ProductNotExists);
+                this._validationService.Throw("Email", "There is already another user with that email", product.Codigo, Validation.ProductNotExists);
             }
 
             this._logger.LogDebug("Updating product");
 
             await _sqlService.ExecuteAsync(ProductQuery.UPDATE, new
             {
-                IdProduct = product.IdProduct,
-                CodProduct = product.CodProduct,
-                ProductName = product.ProductName,
+                IdProduct = product.ProdutoId,
+                CodProduct = product.Codigo,
+                ProductName = product.Nome,
                 Descricao = product.Descricao,
-                Quant = product.Quant,
-                Value = product.Value,
-                ProdType = product.ProdType,
-                Active = product.Active,
+                Quant = product.Quantidade,
+                Value = product.Valor,
+                ProdType = product.Tipo,
+                Active = product.Ativo,
                 CreatedBy = _authenticatedService.Token().Subject
             });
 
-            product.IdProduct = oldProduct.IdProduct;
+            product.ProdutoId = oldProduct.ProdutoId;
 
             this._logger.LogDebug("Ending UpdateAsync");
 

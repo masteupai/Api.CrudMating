@@ -13,12 +13,12 @@ namespace API.Domains.Validators
     {
         public ProductValidator()
         {
-            RuleFor(x => x.ProductName)
+            RuleFor(x => x.Nome)
                 .NotEmpty()
                 .WithErrorCode(((int)Validation.UserNameNotInformed).ToString())
                 .WithMessage("Product's name must be informed");
 
-            RuleFor(x => x.ProductName)
+            RuleFor(x => x.Nome)
                 .Length(1, 80)
                 .WithErrorCode(((int)Validation.UserNameExceedsLimit).ToString())
                 .WithMessage("Product's name length must be between 1 and 25 characters");

@@ -57,7 +57,7 @@ namespace API.Controllers
         {
             var created = await _productService.CreateAsync(product);
 
-            return CreatedAtAction(nameof(Post), new { id = product.IdProduct }, created);
+            return CreatedAtAction(nameof(Post), new { id = product.ProdutoId }, created);
         }
 
         [HttpPut("{codProduct}")]
@@ -88,8 +88,5 @@ namespace API.Controllers
 
             return NoContent();
         }
-
-
-
     }
 }

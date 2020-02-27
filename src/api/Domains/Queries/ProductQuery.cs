@@ -8,84 +8,77 @@ namespace API.Domains.Queries
     public class ProductQuery
     {
         public const string GET = @"
-            SELECT IdProduct,
-                   CodProduct,
-                   ProductName,
-                   Quant,
-                   Value,
-                   ProdType
-              FROM DBSERVICE.Product
-             WHERE CodProduct = @CodProduct;
-        ";
-        //AND CreatedBy = @CreatedBy;
+          
+            SELECT PRODUTOID,
+                   CODIGO,
+                   NOME,
+                   DESCRICAO,
+                   QUANTIDADE,
+                   VALOR,
+                   TIPO,
+                   ATIVO
+              FROM DB_Mecanic.dbo.TBPRODUTOS
+             WHERE CODIGO = @CodProduct;
+           
+        ";   
 
         public const string PAGINATE = @"
-            SELECT IdProduct,
-                   CodProduct,
-                   ProductName,
-                   Descricao,
-                   Quant,
-                   Value,
-                   ProdType,
-                   Active
-              FROM DBSERVICE.Product
-             WHERE CodProduct > @Offset
-             AND CreatedBy = @CreatedBy
-          ORDER BY CodProduct ASC
-             LIMIT @Limit;
+            SELECT PRODUTOID,
+                   CODIGO,
+                   NOME,
+                   DESCRICAO,
+                   QUANTIDADE,
+                   VALOR,
+                   TIPO,
+                   ATIVO
+              FROM DB_Mecanic.dbo.TBPRODUTOS
+             WHERE CODIGO > @Offset AND CODIGO < @Limit
+          ORDER BY CODIGO ASC;             
         ";
 
         public const string TOTAL = @"
             SELECT COUNT(1)
-              FROM DBSERVICE.Product
-             WHERE CreatedBy = @CreatedBy;
+            FROM DB_Mecanic.dbo.TBPRODUTOS;
         ";
 
         public const string INSERT = @"
-            INSERT INTO DBSERVICE.Product 
-                       (IdProduct,
-                        CodProduct,
-                        ProductName,
-                        Descricao,
-                        Quant,
-                        Value,
-                        ProdType,
-                        Active,
-                        CreatedBy)
-                VALUES (@IdProduct,
-                        @CodProduct,
+            INSERT INTO DB_Mecanic.dbo.TBPRODUTOS
+                       (CODIGO,
+                        NOME,
+                        DESCRICAO,
+                        QUANTIDADE,
+                        VALOR,
+                        TIPO,
+                        ATIVO))
+                VALUES (@CodProduct,
                         @ProductName,
                         @Descricao,
                         @Quant,
                         @Value,
                         @ProdType,
-                        @Active,
-                        @CreatedBy);
-                SELECT LAST_INSERT_ID();                  
+                        @Active);                                 
         ";
 
         public const string UPDATE = @"
-            UPDATE DBSERVICE.Product 
-               SET IdProduct = @IdProduct,
-                   CodProduct = @CodProduct,
-                   ProductName = @ProductName,
-                   Descricao = @Descricao,
-                   Quant = @Quant,
-                   Value = @Value,
-                   ProdType = @ProdType ,
-                   Active = @Active,
-                   CreatedBy = @CreatedBy
-             WHERE CodProduct = @CodProduct;
+            UPDATE DB_Mecanic.dbo.TBPRODUTOS 
+               SET CODIGO = @CodProduct,
+                   NOME = @ProductName,
+                   DESCRICAO = @Descricao,
+                   QUANTIDADE = @Quant,
+                   VALOR = @Value,
+                   TIPO = @ProdType ,
+                   ATIVO = @Active                   
+             WHERE CODIGO = @CodProduct;
         ";
 
         public const string DELETE = @"
-            DELETE FROM DBSERVICE.Product
-                  WHERE IdProduct = @IdProduct;
+            DELETE FROM DB_Mecanic.dbo.TBPRODUTOS 
+                  WHERE CODIGO = @CodProduct;
         ";
         public const string EXIST_PRODUCT = @"
             SELECT count(1) 
-              FROM DBSERVICE.Product
-             WHERE CodProduct = @CodProduct;
+              FROM DB_Mecanic.dbo.TBPRODUTOS 
+             WHERE CODIGO = @CodProduct;
         ";
     }
 }

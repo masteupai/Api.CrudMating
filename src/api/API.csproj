@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Domains\Mapping\**" />
+    <Content Remove="Domains\Mapping\**" />
+    <EmbeddedResource Remove="Domains\Mapping\**" />
+    <None Remove="Domains\Mapping\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="1.50.5" />
     <PackageReference Include="FluentValidation" Version="8.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -17,10 +24,6 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-beta" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.0.0-beta" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Domains\Mapping\" />
   </ItemGroup>
 
 </Project>

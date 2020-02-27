@@ -1,0 +1,15 @@
+C:\FAM - Projeto\Api.CrudMating\src\api\bin\Debug\netcoreapp2.2\appsettings.json
+C:\FAM - Projeto\Api.CrudMating\src\api\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\FAM - Projeto\Api.CrudMating\src\api\bin\Debug\netcoreapp2.2\API.deps.json
+C:\FAM - Projeto\Api.CrudMating\src\api\bin\Debug\netcoreapp2.2\API.runtimeconfig.json
+C:\FAM - Projeto\Api.CrudMating\src\api\bin\Debug\netcoreapp2.2\API.runtimeconfig.dev.json
+C:\FAM - Projeto\Api.CrudMating\src\api\bin\Debug\netcoreapp2.2\API.dll
+C:\FAM - Projeto\Api.CrudMating\src\api\bin\Debug\netcoreapp2.2\API.pdb
+C:\FAM - Projeto\Api.CrudMating\src\api\obj\Debug\netcoreapp2.2\API.csprojAssemblyReference.cache
+C:\FAM - Projeto\Api.CrudMating\src\api\obj\Debug\netcoreapp2.2\API.RazorAssemblyInfo.cache
+C:\FAM - Projeto\Api.CrudMating\src\api\obj\Debug\netcoreapp2.2\API.RazorAssemblyInfo.cs
+C:\FAM - Projeto\Api.CrudMating\src\api\obj\Debug\netcoreapp2.2\API.AssemblyInfoInputs.cache
+C:\FAM - Projeto\Api.CrudMating\src\api\obj\Debug\netcoreapp2.2\API.AssemblyInfo.cs
+C:\FAM - Projeto\Api.CrudMating\src\api\obj\Debug\netcoreapp2.2\API.RazorTargetAssemblyInfo.cache
+C:\FAM - Projeto\Api.CrudMating\src\api\obj\Debug\netcoreapp2.2\API.dll
+C:\FAM - Projeto\Api.CrudMating\src\api\obj\Debug\netcoreapp2.2\API.pdb
