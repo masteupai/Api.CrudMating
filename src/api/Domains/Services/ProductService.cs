@@ -69,8 +69,7 @@ namespace API.Domains.Services
                 Quant = product.Quantidade,
                 Value = product.Valor,
                 ProdType = product.Tipo,
-                Active = product.Ativo,
-                CreatedBy = _authenticatedService.Token().Subject
+                Active = product.Ativo               
             });
 
             this._logger.LogDebug("Ending CreateAsync");
@@ -78,13 +77,13 @@ namespace API.Domains.Services
             return product;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(int codProduct)
         {
             this._logger.LogDebug("Starting DeleteAsync");
 
             this._logger.LogDebug("Retriving the product wants to delete");
 
-            var product = await GetAsync(id);
+            var product = await GetAsync(codProduct);
 
             var temProduct = await _sqlService.ExistsAsync(ProductQuery.EXIST_PRODUCT, new { CodProduct = product.Codigo });
 
@@ -99,8 +98,7 @@ namespace API.Domains.Services
 
             await _sqlService.ExecuteAsync(ProductQuery.DELETE, new
             {
-                IdProduct = product.ProdutoId,
-                CreatedBy = _authenticatedService.Token().Subject
+                CodProduct = codProduct
             });
 
             this._logger.LogDebug("Ending DeleteAsync");
@@ -147,7 +145,6 @@ namespace API.Domains.Services
 
             var list = await _sqlService.ListAsync<Product>(ProductQuery.PAGINATE, new
             {
-                CreatedBy = _authenticatedService.Token().Subject,
                 Offset = offset,
                 Limit = limit
             });
@@ -178,12 +175,6 @@ namespace API.Domains.Services
         {
             this._logger.LogDebug("Starting UpdateAsync");
 
-            this._logger.LogDebug("Validating payload");
-
-            //await _userValidator.ValidateAndThrowAsync(product);
-
-            //this._logger.LogDebug("Retriving the user the user wants to update");
-
             var oldProduct = await GetAsync(codProduct);
 
             var existsProduct = await _sqlService.ExistsAsync(ProductQuery.EXIST_PRODUCT, new
@@ -195,24 +186,23 @@ namespace API.Domains.Services
 
             if (!existsProduct)
             {
-                this._logger.LogDebug("Email already exists, triggering 400");
+                this._logger.LogDebug("Product already exists, triggering 400");
 
-                this._validationService.Throw("Email", "There is already another user with that email", product.Codigo, Validation.ProductNotExists);
+                this._validationService.Throw("product", "There is already another user with that product", product.Codigo, Validation.ProductNotExists);
             }
 
             this._logger.LogDebug("Updating product");
 
             await _sqlService.ExecuteAsync(ProductQuery.UPDATE, new
             {
-                IdProduct = product.ProdutoId,
+                IdProduct = oldProduct.ProdutoId,
                 CodProduct = product.Codigo,
                 ProductName = product.Nome,
                 Descricao = product.Descricao,
                 Quant = product.Quantidade,
                 Value = product.Valor,
                 ProdType = product.Tipo,
-                Active = product.Ativo,
-                CreatedBy = _authenticatedService.Token().Subject
+                Active = product.Ativo
             });
 
             product.ProdutoId = oldProduct.ProdutoId;

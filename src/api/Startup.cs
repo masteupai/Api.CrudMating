@@ -55,7 +55,7 @@ namespace API
                 {
                     options.SwaggerDoc("v1", new OpenApiInfo
                     {
-                        Title = "API Usuarios",
+                        Title = "API Mecanics",
                         Version = "v1",
                         Contact = new OpenApiContact
                         {

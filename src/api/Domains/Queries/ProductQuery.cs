@@ -32,7 +32,7 @@ namespace API.Domains.Queries
                    TIPO,
                    ATIVO
               FROM DB_Mecanic.dbo.TBPRODUTOS
-             WHERE CODIGO > @Offset AND CODIGO < @Limit
+             WHERE PRODUTOID > @Offset AND PRODUTOID < @Limit
           ORDER BY CODIGO ASC;             
         ";
 
@@ -49,7 +49,7 @@ namespace API.Domains.Queries
                         QUANTIDADE,
                         VALOR,
                         TIPO,
-                        ATIVO))
+                        ATIVO)
                 VALUES (@CodProduct,
                         @ProductName,
                         @Descricao,
@@ -68,7 +68,7 @@ namespace API.Domains.Queries
                    VALOR = @Value,
                    TIPO = @ProdType ,
                    ATIVO = @Active                   
-             WHERE CODIGO = @CodProduct;
+             WHERE PRODUTOID = @IdProduct;
         ";
 
         public const string DELETE = @"
