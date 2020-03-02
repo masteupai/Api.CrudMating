@@ -115,18 +115,8 @@ namespace API.Domains.Services
 
             var product = await _sqlService.GetAsync<Product>(ProductQuery.GET, new
             {
-                CodProduct = codProduct
-               //CreatedBy = _authenticatedService.Token().Subject
-            });
-
-           // var temProduct = await _sqlService.ExistsAsync(ProductQuery.EXIST_PRODUCT, new { CodProduct = codProduct });
-
-            //if (temProduct)
-            //{
-            //    this._logger.LogDebug("Product already exists, triggering 400");
-
-            //    this._validationService.Throw("Product", "There is already another product with that CodProduct", product.CodProduct, Validation.ProductExists);
-            //}
+                CodProduct = codProduct              
+            });         
 
             this._logger.LogDebug("Checking if product exists");
 

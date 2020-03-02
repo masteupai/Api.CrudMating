@@ -20,6 +20,9 @@ namespace API.Domains.Models.Faults
         UserRepeatedDocument = 14,
         UserRepeatedEmail = 15,
         ProductExists = 16,
-        ProductNotExists = 17
+        ProductNotExists = 17,
+        FuncionarioExists = 18,
+        FuncionarioNotExists = 19,
+        FuncionarioNotInformed = 20
     }
 }

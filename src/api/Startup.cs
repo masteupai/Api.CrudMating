@@ -101,12 +101,14 @@ namespace API
             services.AddTransient<ISqlService, SqlService>();
             //services.AddTransient<IUserService, UserService>();            
             services.AddTransient<IProductService, ProductService>();            
+            services.AddTransient<IFuncionarioService, FuncionarioService>();            
             services.AddTransient<IValidationService, ValidationService>();
             services.AddTransient<IAuthenticatedService, AuthenticatedService>();
 
             // Validators
             //services.AddSingleton<IValidator<User>, UserValidator>();
             services.AddSingleton<IValidator<Product>, ProductValidator>();
+            services.AddSingleton<IValidator<Funcionario>, FuncionarioValidator>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
