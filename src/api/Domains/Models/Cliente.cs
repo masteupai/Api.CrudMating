@@ -9,5 +9,8 @@ namespace API.Domains.Models
     {
         public int ClienteId { get; set; }
         public string Nome { get; set; }
+        public DateTime DataNascimento { get; set; }
+        public string Documento { get; set; }
+        public bool Ativo { get; set; }
     }
 }

@@ -88,7 +88,7 @@ namespace API.Domains.Services
             {
                 this._logger.LogDebug("Funcionario already exists, triggering 400");
 
-                this._validationService.Throw("Funcionario", "There is already another product with that Id", funcionario.FuncionarioId, Validation.FuncionarioNotExists);
+                this._validationService.Throw("Funcionario", "There is already another funcionario with that Id", funcionario.FuncionarioId, Validation.FuncionarioNotExists);
             }
 
             this._logger.LogDebug("Deleting product");

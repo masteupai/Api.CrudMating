@@ -98,10 +98,10 @@ namespace API
             services.AddScoped<IDatabaseFactory, DatabaseFactory>();
 
             // Services           
-            services.AddTransient<ISqlService, SqlService>();
-            //services.AddTransient<IUserService, UserService>();            
+            services.AddTransient<ISqlService, SqlService>();                       
             services.AddTransient<IProductService, ProductService>();            
             services.AddTransient<IFuncionarioService, FuncionarioService>();            
+            services.AddTransient<IClienteService, ClienteService>();            
             services.AddTransient<IValidationService, ValidationService>();
             services.AddTransient<IAuthenticatedService, AuthenticatedService>();
 
@@ -109,6 +109,7 @@ namespace API
             //services.AddSingleton<IValidator<User>, UserValidator>();
             services.AddSingleton<IValidator<Product>, ProductValidator>();
             services.AddSingleton<IValidator<Funcionario>, FuncionarioValidator>();
+            services.AddSingleton<IValidator<Cliente>, ClienteValidator>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
