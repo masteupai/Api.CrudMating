@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "a131f637-81e8-4b70-ab78-764b655504f3",
-		"name": "API Bootstrap",
-		"description": "API application with swagger.\n\nContact Support: \n{\n\nName : Gabriel Lucena\n\nEmail : undefined\n\n}",
+		"name": "API Mecanic",
+		"description": "API application with swagger.\n\nContact Support: \n{\n\nName : Matheus Paes\n\nEmail : undefined\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [

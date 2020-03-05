@@ -13,6 +13,7 @@ namespace API.Domains.Models
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
         public Situacao Situacao { get; set; }
+        public string Quilometragem { get; set; }
         public double PrecoTotal { get; set; }
     }
 }

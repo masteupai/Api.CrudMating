@@ -2,45 +2,97 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Domains.Models;
+using API.Domains.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("veiculos")]
+    [SwaggerTag("Create, edit, delete and retrieve Veiculos")]
     public class VeiculosController : ControllerBase
     {
-        // GET: api/Veiculos
+        private readonly IVeiculoService _veiculosService;
+
+        public VeiculosController(IVeiculoService veiculosService)
+        {
+            _veiculosService = veiculosService;
+        }
+
+
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        [SwaggerOperation(
+                  Summary = "Retrieve a paginated list of Veiculos",
+                  Description = "Retrieves only products that were created by the authenticated Veiculo"
+              )]
+        [SwaggerResponse(200, "List of Veiculos filtered by the informed parameters", typeof(Pagination<Veiculo>))]
+        public async Task<ActionResult> List(
+                  [SwaggerParameter("Skip that many items before beginning to return items")][BindRequired]  int offset,
+                  [SwaggerParameter("Limit the number of items that are returned")][BindRequired] int limit)
         {
-            return new string[] { "value1", "value2" };
+            var pagination = await _veiculosService.ListAsync(offset, limit);
+
+            return Ok(pagination);
         }
 
-        // GET: api/Veiculos/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{veiculoId}")]
+        [SwaggerOperation(
+            Summary = "Retrieve a Veiculo by their id",
+            Description = "Retrieves Veiculo only if it were created by the authenticated Veiculo"
+        )]
+        [SwaggerResponse(200, "A Veiculo filtered", typeof(Veiculo))]
+        public async Task<ActionResult> Get([SwaggerParameter("Veiculo's id")]int veiculoId)
         {
-            return "value";
+            var Veiculo = await _veiculosService.GetAsync(veiculoId);
+
+            return Ok(Veiculo);
         }
 
-        // POST: api/Veiculos
         [HttpPost]
-        public void Post([FromBody] string value)
+        [SwaggerOperation(
+            Summary = "Creates a new Veiculo",
+            Description = "Creates a new veiculo if all validations are succeded"
+        )]
+        [SwaggerResponse(201, "The veiculo was successfully created", typeof(Veiculo))]
+        public async Task<ActionResult> Post([FromBody] Veiculo Veiculo)
         {
+            var created = await _veiculosService.CreateAsync(Veiculo);
+
+            return CreatedAtAction(nameof(Post), new { id = Veiculo.VeiculoId }, created);
         }
 
-        // PUT: api/Veiculos/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{veiculoId}")]
+        [SwaggerOperation(
+            Summary = "Edits an existing Veiculo by their Id",
+            Description = "Edits an existing Veiculo if all validations are succeded"
+        )]
+        [SwaggerResponse(200, "The Veiculo was successfully edited", typeof(Veiculo))]
+        public async Task<ActionResult> Put(
+            [SwaggerParameter("veiculo's Id")] int veiculoId,
+            [FromBody] Veiculo Veiculo)
         {
+            var edited = await _veiculosService.UpdateAsync(veiculoId, Veiculo);
+
+            return Ok(edited);
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{veiculoId}")]
+        [SwaggerOperation(
+            Summary = "Deletes a veiculo by their Id",
+            Description = "Deletes a veiculo if that veiculo is deletable"
+        )]
+        [SwaggerResponse(204, "The veiculo was successfully deleted")]
+        public async Task<ActionResult> Delete(
+            [SwaggerParameter("veiculo's Id")]int veiculoId)
         {
+            await _veiculosService.DeleteAsync(veiculoId);
+
+            return NoContent();
         }
     }
 }

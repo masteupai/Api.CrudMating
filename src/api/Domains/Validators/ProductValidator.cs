@@ -28,7 +28,7 @@ namespace API.Domains.Validators
         {
             if (product == null)
             {
-                var error = new ValidationFailure("User", "User must be informed", null)
+                var error = new ValidationFailure("Product", "Product must be informed", null)
                 {
                     ErrorCode = ((int)Validation.UserNotInformed).ToString()
                 };

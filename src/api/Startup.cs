@@ -102,6 +102,7 @@ namespace API
             services.AddTransient<IProductService, ProductService>();            
             services.AddTransient<IFuncionarioService, FuncionarioService>();            
             services.AddTransient<IClienteService, ClienteService>();            
+            services.AddTransient<IVeiculoService, VeiculoService>();            
             services.AddTransient<IValidationService, ValidationService>();
             services.AddTransient<IAuthenticatedService, AuthenticatedService>();
 
@@ -110,6 +111,7 @@ namespace API
             services.AddSingleton<IValidator<Product>, ProductValidator>();
             services.AddSingleton<IValidator<Funcionario>, FuncionarioValidator>();
             services.AddSingleton<IValidator<Cliente>, ClienteValidator>();
+            services.AddSingleton<IValidator<Veiculo>, VeiculoValidator>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
