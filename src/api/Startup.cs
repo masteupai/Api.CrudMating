@@ -103,6 +103,8 @@ namespace API
             services.AddTransient<IFuncionarioService, FuncionarioService>();            
             services.AddTransient<IClienteService, ClienteService>();            
             services.AddTransient<IVeiculoService, VeiculoService>();            
+            services.AddTransient<IContatosClienteService, ContatoClienteService>();            
+           // services.AddTransient<IContatosFuncionarioService, ContatoFuncionarioService>();            
             services.AddTransient<IValidationService, ValidationService>();
             services.AddTransient<IAuthenticatedService, AuthenticatedService>();
 
@@ -112,6 +114,7 @@ namespace API
             services.AddSingleton<IValidator<Funcionario>, FuncionarioValidator>();
             services.AddSingleton<IValidator<Cliente>, ClienteValidator>();
             services.AddSingleton<IValidator<Veiculo>, VeiculoValidator>();
+            services.AddSingleton<IValidator<ContatoCliente>, ContatoClienteValidator>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 

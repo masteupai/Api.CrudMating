@@ -26,6 +26,8 @@ namespace API.Domains.Models.Faults
         FuncionarioNotInformed = 20,
         ClienteExists = 21,
         ClienteNotExists = 22,
-        ClienteNotInformed = 23
+        ClienteNotInformed = 23,
+        ContatoExists= 24,
+        ContatoNotExists= 25
     }
 }

@@ -18,8 +18,6 @@ namespace API.Domains.Services
         Task<Cliente> UpdateAsync(int id, Cliente cliente);
         Task DeleteAsync(int id);
     }
-
-
     public class ClienteService : IClienteService
     {
 
@@ -43,6 +41,7 @@ namespace API.Domains.Services
             _logger = logger;
 
         }
+        #region Cliente Crud
 
         public async Task<Cliente> CreateAsync(Cliente cliente)
         {
@@ -89,7 +88,7 @@ namespace API.Domains.Services
             {
                 this._logger.LogDebug("Cliente already exists, triggering 400");
 
-                this._validationService.Throw("Cliente", "There is already another cliente with that Id", cliente.ClienteId, Validation.ClienteNotExists);
+                this._validationService.Throw("Cliente", "There is already another cliente with that Id", (object)cliente.ClienteId, Validation.ClienteNotExists);
             }
 
 
@@ -184,7 +183,7 @@ namespace API.Domains.Services
             {
                 this._logger.LogDebug("Cliente already exists, triggering 400");
 
-                this._validationService.Throw("Cliente", "There isn't already another Cliente with that Id", cliente.ClienteId, Validation.FuncionarioNotExists);
+                this._validationService.Throw("Cliente", "There isn't already another Cliente with that Id", (object)cliente.ClienteId, Validation.FuncionarioNotExists);
             }
 
             this._logger.LogDebug("Updating product");
@@ -204,5 +203,6 @@ namespace API.Domains.Services
 
             return cliente;
         }
+#endregion
     }
 }

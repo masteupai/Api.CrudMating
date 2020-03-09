@@ -21,13 +21,13 @@ namespace API.Controllers
         {
             _clienteService = clienteService;
         }
-
+        #region Cadastro de cliente
         [HttpGet]
         [SwaggerOperation(
-          Summary = "Retrieve a paginated list of Funcionarios",
-          Description = "Retrieves only products that were created by the authenticated Cliente"
+          Summary = "Retrieve a paginated list of Clientes",
+          Description = "Retrieves only Clientes"
       )]
-        [SwaggerResponse(200, "List of Funcionarios filtered by the informed parameters", typeof(Pagination<Cliente>))]
+        [SwaggerResponse(200, "List of Clientes filtered by the informed parameters", typeof(Pagination<Cliente>))]
         public async Task<ActionResult> List(
           [SwaggerParameter("Skip that many items before beginning to return items")][BindRequired]  int offset,
           [SwaggerParameter("Limit the number of items that are returned")][BindRequired] int limit)
@@ -91,8 +91,7 @@ namespace API.Controllers
 
             return NoContent();
         }
-
-
+        #endregion
 
 
     }
