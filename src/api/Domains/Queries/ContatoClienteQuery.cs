@@ -24,7 +24,7 @@ namespace API.Domains.Queries
                    CLIENTEID,
                    TELEFONE              
               FROM DB_Mecanic.dbo.TBCONTATOSCLI
-             WHERE CONTATOCLIID > @Offset AND CONTATOCLIID < @Limit
+             WHERE CONTATOCLIID > @Offset AND CONTATOCLIID < @Limit AND CLIENTEID = @CLIENTEID
           ORDER BY EMAIL ASC;             
         ";
 

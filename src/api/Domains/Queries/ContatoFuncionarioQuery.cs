@@ -25,7 +25,7 @@ namespace API.Domains.Queries
                    FUNCIONARIOID,
                    TELEFONE              
               FROM DB_Mecanic.dbo.TBCONTATOSFUN
-             WHERE CONTATOFUNID > @Offset AND CONTATOFUNID < @Limit
+             WHERE CONTATOFUNID > @Offset AND CONTATOFUNID < @Limit AND FUNCIONARIOID = @FUNCIONARIOID
           ORDER BY EMAIL ASC;             
         ";
 
@@ -63,17 +63,17 @@ namespace API.Domains.Queries
              WHERE FUNCIONARIOID = @Id;
         ";
 
-        public const string EXIST_CONTATOCLIENTE_TELEFONE = @"
+        public const string EXIST_CONTATOFUN_TELEFONE = @"
             SELECT count(1) 
               FROM DB_Mecanic.dbo.TBCONTATOSFUN 
              WHERE TELEFONE = @TELEFONE;
         ";
-        public const string EXIST_CONTATOCLIENTE_EMAIL = @"
+        public const string EXIST_CONTATOFUN_EMAIL = @"
             SELECT count(1) 
               FROM DB_Mecanic.dbo.TBCONTATOSFUN 
              WHERE EMAIL = @EMAIL;
         ";
-        public const string EXIST_CONTATOCLIENTE_ID = @"
+        public const string EXIST_CONTATOFUN_ID = @"
             SELECT count(1) 
               FROM DB_Mecanic.dbo.TBCONTATOSFUN 
              WHERE CONTATOFUNID = @ID;

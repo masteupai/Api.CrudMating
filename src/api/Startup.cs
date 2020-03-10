@@ -91,20 +91,20 @@ namespace API
             services.AddOptions();
             services.Configure<Database>(Configuration.GetSection("Database"));
             //services.AddDbContext(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
-            
+
 
             // Dependency injection
             // Factories
             services.AddScoped<IDatabaseFactory, DatabaseFactory>();
 
             // Services           
-            services.AddTransient<ISqlService, SqlService>();                       
-            services.AddTransient<IProductService, ProductService>();            
-            services.AddTransient<IFuncionarioService, FuncionarioService>();            
-            services.AddTransient<IClienteService, ClienteService>();            
-            services.AddTransient<IVeiculoService, VeiculoService>();            
-            services.AddTransient<IContatosClienteService, ContatoClienteService>();            
-           // services.AddTransient<IContatosFuncionarioService, ContatoFuncionarioService>();            
+            services.AddTransient<ISqlService, SqlService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IFuncionarioService, FuncionarioService>();
+            services.AddTransient<IClienteService, ClienteService>();
+            services.AddTransient<IVeiculoService, VeiculoService>();
+            services.AddTransient<IContatosClienteService, ContatosClienteService>();
+            services.AddTransient<IContatosFuncionarioService, ContatosFuncionarioService>();
             services.AddTransient<IValidationService, ValidationService>();
             services.AddTransient<IAuthenticatedService, AuthenticatedService>();
 
@@ -115,6 +115,7 @@ namespace API
             services.AddSingleton<IValidator<Cliente>, ClienteValidator>();
             services.AddSingleton<IValidator<Veiculo>, VeiculoValidator>();
             services.AddSingleton<IValidator<ContatoCliente>, ContatoClienteValidator>();
+            services.AddSingleton<IValidator<ContatoFuncionario>, ContatoFuncionarioValidator>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 

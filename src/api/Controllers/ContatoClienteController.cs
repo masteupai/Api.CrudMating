@@ -11,8 +11,9 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace API.Controllers
 {
-    [Route("contatosCliente")]
     [ApiController]
+    [Route("contatosCliente")]
+    [SwaggerTag("Create, edit, delete and retrieve cliente contatos")]
     public class ContatoClienteController : ControllerBase
     {
 
@@ -34,7 +35,7 @@ namespace API.Controllers
           [SwaggerParameter("Limit the number of items that are returned")][BindRequired] int limit,
           [SwaggerParameter("Owner of contatos")][BindRequired] int clienteId)
         {        
-            var pagination = await _contatoClienteService.ListAsync(offset, limit);
+            var pagination = await _contatoClienteService.ListAsync(offset, limit, clienteId);
 
             return Ok(pagination);
         }

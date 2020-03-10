@@ -8,7 +8,7 @@ namespace API.Domains.Models
     public class ContatoFuncionario
     {
         public int ContatoFunId { get; set; }
-        public int ClienteId { get; set; }
+        public int FuncionarioId { get; set; }
         public string Email { get; set; }
         public string Telefone { get; set; }
     }
