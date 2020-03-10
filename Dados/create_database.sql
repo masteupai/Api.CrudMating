@@ -23,6 +23,7 @@ if not exists (select * from sysobjects where name ='TBENDERECOSCLI' AND XTYPE='
 create table TBENDERECOSCLI(
 ENDERECOCLIID INT IDENTITY,
 CLIENTEID INT,
+CEP VARCHAR(9) not null,
 LOGRADOURO varchar(50) not null,
 BAIRRO varchar(50) not null,
 CIDADE varchar(30) not null,
@@ -60,6 +61,7 @@ if not exists (select * from sysobjects where name ='TBENDERECOSFUN' AND XTYPE='
 create table TBENDERECOSFUN(
 ENDERECOFUNID INT IDENTITY,
 FUNCIONARIOID INT,
+CEP VARCHAR(9) not null,
 LOGRADOURO varchar(50) not null,
 BAIRRO varchar(50) not null,
 CIDADE varchar(30) not null,

@@ -28,6 +28,10 @@ namespace API.Domains.Models.Faults
         ClienteNotExists = 22,
         ClienteNotInformed = 23,
         ContatoExists= 24,
-        ContatoNotExists= 25
+        ContatoNotExists= 25,
+        ContatoNotInformed= 26,
+        EnderecoExist = 27,
+        EnderecoNotExists = 28,
+        EnderecoNotInformed = 29,
     }
 }

@@ -14,12 +14,12 @@ namespace API.Controllers
     [ApiController]
     [Route("contatosCliente")]
     [SwaggerTag("Create, edit, delete and retrieve cliente contatos")]
-    public class ContatoClienteController : ControllerBase
+    public class ContatosClienteController : ControllerBase
     {
 
         private readonly IContatosClienteService _contatoClienteService;
 
-        public ContatoClienteController(IContatosClienteService contatoClienteService)
+        public ContatosClienteController(IContatosClienteService contatoClienteService)
         {
             _contatoClienteService = contatoClienteService;
         }

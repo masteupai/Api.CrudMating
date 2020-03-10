@@ -105,6 +105,8 @@ namespace API
             services.AddTransient<IVeiculoService, VeiculoService>();
             services.AddTransient<IContatosClienteService, ContatosClienteService>();
             services.AddTransient<IContatosFuncionarioService, ContatosFuncionarioService>();
+            services.AddTransient<IEnderecosClienteService, EnderecosClienteService>();
+            services.AddTransient<IEnderecosFuncionarioService, EnderecosFuncionarioService>();
             services.AddTransient<IValidationService, ValidationService>();
             services.AddTransient<IAuthenticatedService, AuthenticatedService>();
 
@@ -116,6 +118,8 @@ namespace API
             services.AddSingleton<IValidator<Veiculo>, VeiculoValidator>();
             services.AddSingleton<IValidator<ContatoCliente>, ContatoClienteValidator>();
             services.AddSingleton<IValidator<ContatoFuncionario>, ContatoFuncionarioValidator>();
+            services.AddSingleton<IValidator<EnderecoCliente>, EnderecoClienteValidator>();
+            services.AddSingleton<IValidator<EnderecoFuncionario>, EnderecoFuncionarioValidator>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
@@ -130,7 +134,7 @@ namespace API
 
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Bootstrap");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Mecanics");
             });
 #endif
 
