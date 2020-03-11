@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.Domains.Models
 {
-    public class Servicos
+    public class Servico
     {
         public int ServicoId { get; set; }
         public int VeiculoId { get; set; }

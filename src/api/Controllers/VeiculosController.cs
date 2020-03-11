@@ -48,9 +48,9 @@ namespace API.Controllers
         [SwaggerResponse(200, "A Veiculo filtered", typeof(Veiculo))]
         public async Task<ActionResult> Get([SwaggerParameter("Veiculo's id")]int veiculoId)
         {
-            var Veiculo = await _veiculosService.GetAsync(veiculoId);
+            var veiculo = await _veiculosService.GetAsync(veiculoId);
 
-            return Ok(Veiculo);
+            return Ok(veiculo);
         }
 
         [HttpPost]
@@ -59,11 +59,11 @@ namespace API.Controllers
             Description = "Creates a new veiculo if all validations are succeded"
         )]
         [SwaggerResponse(201, "The veiculo was successfully created", typeof(Veiculo))]
-        public async Task<ActionResult> Post([FromBody] Veiculo Veiculo)
+        public async Task<ActionResult> Post([FromBody] Veiculo veiculo)
         {
-            var created = await _veiculosService.CreateAsync(Veiculo);
+            var created = await _veiculosService.CreateAsync(veiculo);
 
-            return CreatedAtAction(nameof(Post), new { id = Veiculo.VeiculoId }, created);
+            return CreatedAtAction(nameof(Post), new { id = veiculo.VeiculoId }, created);
         }
 
         [HttpPut("{veiculoId}")]
@@ -74,9 +74,9 @@ namespace API.Controllers
         [SwaggerResponse(200, "The Veiculo was successfully edited", typeof(Veiculo))]
         public async Task<ActionResult> Put(
             [SwaggerParameter("veiculo's Id")] int veiculoId,
-            [FromBody] Veiculo Veiculo)
+            [FromBody] Veiculo veiculo)
         {
-            var edited = await _veiculosService.UpdateAsync(veiculoId, Veiculo);
+            var edited = await _veiculosService.UpdateAsync(veiculoId, veiculo);
 
             return Ok(edited);
         }

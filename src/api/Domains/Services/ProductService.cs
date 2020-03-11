@@ -14,8 +14,8 @@ namespace API.Domains.Services
     {
         Task<Pagination<Product>> ListAsync(int offset, int limit);
         Task<Product> GetAsync(int id);
-        Task<Product> CreateAsync(Product user);
-        Task<Product> UpdateAsync(int id, Product user);
+        Task<Product> CreateAsync(Product produto);
+        Task<Product> UpdateAsync(int id, Product produto);
         Task DeleteAsync(int id);
        
     }
