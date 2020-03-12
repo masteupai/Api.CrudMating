@@ -11,7 +11,7 @@ namespace API.Domains.Queries
           
             SELECT SERVICOID,
                    VEICULOID,                   
-                   DATAINCIO,
+                   DATAINICIO,
                    DATAFIM,
                    SITUACAO,
                    QUILOMETRAGEM,
@@ -23,14 +23,26 @@ namespace API.Domains.Queries
         public const string PAGINATE = @"
             SELECT SERVICOID,
                    VEICULOID,                   
-                   DATAINCIO,
+                   DATAINICIO,
                    DATAFIM,
                    SITUACAO,
                    QUILOMETRAGEM,
                    PRECOTOTAL               
               FROM DB_Mecanic.dbo.TBSERVICOS
              WHERE SERVICOID > @Offset AND SERVICOID < @Limit
-          ORDER BY DATAINCIO ASC;             
+          ORDER BY DATAINICIO ASC;             
+        ";
+        public const string PAGINATEPERVEICULO = @"
+            SELECT SERVICOID,
+                   VEICULOID,                   
+                   DATAINICIO,
+                   DATAFIM,
+                   SITUACAO,
+                   QUILOMETRAGEM,
+                   PRECOTOTAL               
+              FROM DB_Mecanic.dbo.TBSERVICOS
+             WHERE SERVICOID > @Offset AND SERVICOID < @Limit AND VEICULOID = @VEICULOID
+          ORDER BY DATAINICIO ASC;             
         ";
 
         public const string TOTAL = @"
@@ -40,24 +52,23 @@ namespace API.Domains.Queries
 
         public const string INSERT = @"
             INSERT INTO DB_Mecanic.dbo.TBSERVICOS
-                       (SERVICOID,                   
-                        VEICULOID,
-                        DATAINCIO,
+                       (VEICULOID,
+                        DATAINICIO,
                         DATAFIM,
                         QUILOMETRAGEM,
                         PRECOTOTAL)
-                VALUES (@SERVICOID,
-                        @VEICULOID,
-                        @DATAINCIO,
+                VALUES (@VEICULOID,
+                        @DATAINICIO,
                         @DATAFIM,
                         @QUILOMETRAGEM,
-                        @PRECOTOTAL);                                 
+                        @PRECOTOTAL); 
+               SELECT @@IDENTITY;
         ";
 
         public const string UPDATE = @"
             UPDATE DB_Mecanic.dbo.TBSERVICOS 
                SET VEICULOID = @VEICULOID,                   
-                   DATAINCIO = @DATAINCIO,
+                   DATAINICIO = @DATAINICIO,
                    DATAFIM = @DATAFIM,
                    QUILOMETRAGEM = @QUILOMETRAGEM,
                    PRECOTOTAL = @PRECOTOTAL

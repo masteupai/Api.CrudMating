@@ -13,6 +13,7 @@ namespace API.Domains.Services
     public interface IServicoService
     {
         Task<Pagination<Servico>> ListAsync(int offset, int limit);
+        Task<Pagination<Servico>> ListPerVeiculoAsync(int offset, int limit, int veiculoId);
         Task<Servico> GetAsync(int id);
         Task<Servico> CreateAsync(Servico servico);
         Task<Servico> UpdateAsync(int id, Servico servico);
@@ -60,7 +61,6 @@ namespace API.Domains.Services
 
             servico.ServicoId = await _sqlService.CreateAsync(ServicosQuery.INSERT, new
             {
-                SERVICOID = servico.ServicoId,
                 VEICULOID = servico.VeiculoId,
                 DATAINICIO = servico.DataInicio,
                 DATAFIM = servico.DataFim,
@@ -205,6 +205,49 @@ namespace API.Domains.Services
             this._logger.LogDebug("Ending UpdateAsync");
 
             return servico;
+        }
+
+
+        public async Task<Pagination<Servico>> ListPerVeiculoAsync(int offset, int limit, int veiculoId)
+        {
+            this._logger.LogDebug("Starting ListAsync");
+
+            this._logger.LogDebug("Validating pagination parameters");
+
+            if (limit - offset > 100)
+            {
+                this._validationService.Throw("Limit", "Too much items for pagination", limit, Validation.PaginationExceedsLimits);
+            }
+
+            this._logger.LogDebug("Retriving paginated list of Servicos");
+
+            var list = await _sqlService.ListAsync<Servico>(ServicosQuery.PAGINATEPERVEICULO, new
+            {
+                Offset = offset,
+                Limit = limit,
+                VEICULOID = veiculoId
+            });
+
+            this._logger.LogDebug("Retriving the number of Servicos");
+
+            var total = await _sqlService.CountAsync(ServicosQuery.TOTAL, new
+            {
+                CreatedBy = _authenticatedService.Token().Subject
+            });
+
+            this._logger.LogDebug("Retriving the number of servicos");
+
+            var pagination = new Pagination<Servico>()
+            {
+                Offset = offset,
+                Limit = limit,
+                Items = list,
+                Total = total
+            };
+
+            this._logger.LogDebug("Ending ListAsync");
+
+            return pagination;
         }
     }
 }
