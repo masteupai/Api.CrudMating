@@ -108,6 +108,8 @@ namespace API
             services.AddTransient<IEnderecosClienteService, EnderecosClienteService>();
             services.AddTransient<IEnderecosFuncionarioService, EnderecosFuncionarioService>();
             services.AddTransient<IServicoService, ServicoService>();
+            services.AddTransient<IServicoFuncionarioService, ServicoFuncionarioService>();
+            services.AddTransient<IServicoProdutoService, ServicoProdutoService>();
             services.AddTransient<IValidationService, ValidationService>();
             services.AddTransient<IAuthenticatedService, AuthenticatedService>();
 
@@ -122,6 +124,8 @@ namespace API
             services.AddSingleton<IValidator<EnderecoCliente>, EnderecoClienteValidator>();
             services.AddSingleton<IValidator<EnderecoFuncionario>, EnderecoFuncionarioValidator>();
             services.AddSingleton<IValidator<Servico>, ServicoValidator>();
+            services.AddSingleton<IValidator<ServicoFuncionario>, ServicoFuncionarioValidator>();
+            services.AddSingleton<IValidator<ServicoProduto>, ServicoProdutoValidator>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
