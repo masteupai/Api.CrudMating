@@ -93,7 +93,7 @@ namespace API.Domains.Services
 
             await _sqlService.ExecuteAsync(ServicoFuncionarioQuery.DELETE, new
             {
-                FUNCIONARIOID = funcionarioServico.ServicoFuncionarioId
+                Id = funcionarioServico.ServicoFuncionarioId
             });
 
             this._logger.LogDebug("Ending DeleteAsync");

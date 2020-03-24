@@ -63,7 +63,8 @@ namespace API.Domains.Services
             produto.ProdutoId = await _sqlService.CreateAsync(ServicoProdutoQuery.INSERT, new
             {
                 SERVICOID = produto.ServicoId,
-                PRODUTOID = produto.ProdutoId
+                PRODUTOID = produto.ProdutoId,
+                QUANTIDADE = produto.Quantidade
             });
 
             this._logger.LogDebug("Ending CreateAsync");
@@ -169,14 +170,14 @@ namespace API.Domains.Services
 
             var oldProdutoServico = await GetAsync(id);
 
-            var existFuncionario = await _sqlService.ExistsAsync(ServicoProdutoQuery.EXIST_SERVICO_ID, new
+            var existProdutoServico = await _sqlService.ExistsAsync(ServicoProdutoQuery.EXIST_SERVICO_ID, new
             {
                 Id = oldProdutoServico.ServicoProdutoId
             });
 
             this._logger.LogDebug("Checking if that product already exists in servico");
 
-            if (!existFuncionario)
+            if (!existProdutoServico)
             {
                 this._logger.LogDebug("produto already exists, triggering 400");
 
@@ -185,11 +186,12 @@ namespace API.Domains.Services
 
             this._logger.LogDebug("Updating product");
 
-            await _sqlService.ExecuteAsync(ServicoFuncionarioQuery.UPDATE, new
+            await _sqlService.ExecuteAsync(ServicoProdutoQuery.UPDATE, new
             {
                 Id = id,
                 SERVICOID = produto.ServicoId,
-                PRODUTOID = produto.ProdutoId
+                PRODUTOID = produto.ProdutoId,
+                QUANTIDADE = produto.Quantidade
             });
 
             produto.ServicoProdutoId = oldProdutoServico.ServicoProdutoId;

@@ -10,7 +10,8 @@ namespace API.Domains.Queries
         public const string GET = @"          
             SELECT SERVICOID,
                    SERVICOPRODUTOID,                   
-                   PRODUTOID
+                   PRODUTOID,
+                   QUANTIDADE
               FROM DB_Mecanic.dbo.TBSERVICOPRODUTOS
              WHERE SERVICOPRODUTOID = @Id;           
         ";
@@ -18,7 +19,8 @@ namespace API.Domains.Queries
         public const string PAGINATE = @"
             SELECT SERVICOID,
                    SERVICOPRODUTOID,                   
-                   PRODUTOID               
+                   PRODUTOID,
+                   QUANTIDADE             
               FROM DB_Mecanic.dbo.TBSERVICOPRODUTOS
              WHERE SERVICOPRODUTOID > @Offset AND SERVICOPRODUTOID < @Limit AND SERVICOID = @SERVICOID
           ORDER BY SERVICOPRODUTOID ASC;             
@@ -33,16 +35,19 @@ namespace API.Domains.Queries
         public const string INSERT = @"
             INSERT INTO DB_Mecanic.dbo.TBSERVICOPRODUTOS
                        (SERVICOID,                  
-                        PRODUTOID)
+                        PRODUTOID,
+                        QUANTIDADE)
                 VALUES (@SERVICOID,
-                        @PRODUTOID); 
+                        @PRODUTOID,
+                        @QUANTIDADE); 
                SELECT @@IDENTITY;
         ";
 
         public const string UPDATE = @"
             UPDATE DB_Mecanic.dbo.TBSERVICOPRODUTOS 
                SET SERVICOID = @SERVICOID,                   
-                   PRODUTOID = @PRODUTOID
+                   PRODUTOID = @PRODUTOID,
+                   QUANTIDADE = @QUANTIDADE
              WHERE SERVICOPRODUTOID = @Id;
         ";
 

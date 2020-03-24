@@ -56,7 +56,8 @@ namespace API.Domains.Queries
                         @Quant,
                         @Value,
                         @ProdType,
-                        @Active);                                 
+                        @Active);   
+                SELECT @@IDENTITY;
         ";
 
         public const string UPDATE = @"

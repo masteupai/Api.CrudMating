@@ -44,7 +44,8 @@ namespace API.Domains.Queries
                 VALUES (@Nome,
                         @Documento,
                         @DataNascimento,
-                        @Ativo);                                 
+                        @Ativo);       
+                SELECT @@IDENTITY;                              
         ";
 
         public const string UPDATE = @"

@@ -52,7 +52,8 @@ namespace API.Domains.Queries
                         @MARCA,
                         @ANO,
                         @PLACA,
-                        @COR);                                 
+                        @COR);  
+               SELECT @@IDENTITY;
         ";
 
         public const string UPDATE = @"

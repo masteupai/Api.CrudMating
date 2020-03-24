@@ -13,7 +13,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace API.Controllers
 {
     [ApiController]
-    [Route("servicos/{servicoId}/produtos")]
+    [Route("servicoProdutos")]
     [SwaggerTag("Create, edit, delete and retrieve produtos in servicos")]
     public class ServicoProdutosController : ControllerBase
     {
@@ -35,7 +35,7 @@ namespace API.Controllers
           [SwaggerParameter("Limit the number of items that are returned")][BindRequired] int limit,
           [SwaggerParameter("Limit the number of items that are returned")][BindRequired][Required] int servicoId)
         {
-            var pagination = await _servicoProdutoService.ListAsync(offset, limit,servicoId);
+            var pagination = await _servicoProdutoService.ListAsync(offset, limit, servicoId);
 
             return Ok(pagination);
         }
@@ -57,11 +57,11 @@ namespace API.Controllers
            Description = "Creates a new  produtos in servicos if all validations are succeded"
        )]
         [SwaggerResponse(201, "The  produtos in servicos was successfully created", typeof(ServicoProduto))]
-        public async Task<ActionResult> Post([FromBody] ServicoProduto cliente)
+        public async Task<ActionResult> Post([FromBody] ServicoProduto servicoProduto)
         {
-            var created = await _servicoProdutoService.CreateAsync(cliente);
+            var created = await _servicoProdutoService.CreateAsync(servicoProduto);
 
-            return CreatedAtAction(nameof(Post), new { id = cliente.ServicoProdutoId }, created);
+            return CreatedAtAction(nameof(Post), new { id = servicoProduto.ServicoProdutoId }, created);
         }
         [HttpPut("{servicoProdutoId}")]
         [SwaggerOperation(

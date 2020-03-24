@@ -53,7 +53,8 @@ namespace API.Domains.Queries
                         @BAIRRO,
                         @CIDADE,
                         @UF,
-                        @CEP);                                 
+                        @CEP);     
+                SELECT @@IDENTITY;                                
         ";
 
         public const string UPDATE = @"

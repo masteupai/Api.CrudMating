@@ -41,7 +41,8 @@ namespace API.Domains.Queries
                         TELEFONE)
                 VALUES (@FUNCIONARIOID,
                         @EMAIL,
-                        @TELEFONE);                                 
+                        @TELEFONE);       
+                SELECT @@IDENTITY;                              
         ";
 
         public const string UPDATE = @"

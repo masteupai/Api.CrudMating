@@ -10,5 +10,6 @@ namespace API.Domains.Models
         public int ServicoProdutoId { get; set; }
         public int ProdutoId { get; set; }
         public int ServicoId { get; set; }
+        public int Quantidade { get; set; }
     }
 }
